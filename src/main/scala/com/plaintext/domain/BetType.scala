@@ -1,8 +1,8 @@
 package com.plaintext.domain
 
-class BetType(val name: String) {
+class BetType(val name: String, val markets: Seq[Market]) {
 
-	override def toString = "[BetType: ]"
+	override def toString = "[BetType: name=%s]".format(name)
 
 	override def equals(other: Any) = {
 		other match {

@@ -52,4 +52,50 @@ class BettingUnmarshallerSpec extends FlatSpec {
 	    names should have length(2)
 	    names should equal(List("William Hill Scottish Cup", "English Championship"))
     }
+
+    "apply" should "unmarshall xml in BetTypes containing Markets" in {
+    	val markets = 
+    		for (
+    			betting <- BettingUnmarshaller(testXml).toSeq;
+	        	betType <- betting.betTypes;
+	        	market <- betType.markets
+	        ) yield {
+				market
+	        } 
+    		
+    	markets.foreach { market => 		
+    		market.id should not be(null)
+    		market.name should not be(null)
+    		market.url should not be(null)
+    		market.date should not be(null)
+    		market.time should not be(null)
+    		market.betTillDate should not be(null)
+    		market.betTillTime should not be(null)
+    		market.lastUpdateDate should not be(null)
+    		market.lastUpdateTime should not be(null)
+    	}
+    }
+
+    // "apply" should "unmarshall xml in Markets containing Participants" in {
+    // 	val participants = 
+    // 		for (
+    // 			betting <- BettingUnmarshaller(testXml).toSeq;
+	   //      	betType <- betting.betTypes;
+	   //      	market <- betType.markets;
+	   //      	participant <- market.participants
+	   //      ) yield {
+				// participant
+	   //      } 
+
+	   //  participants.foreach { participant => 
+	   //  	participant.name should not be(null)
+	   //  	participant.id should not be(null)
+	   //  	participant.odds should not be(null)
+	   //  	participant.oddsDecimal should not be(null)
+	   //  	participant.lastUpdateDate should not be(null)
+	   //  	participant.lastUpdateTime should not be(null)
+	   //  	participant.handicap should not be(null)
+	   //  }
+    // }
+
 }

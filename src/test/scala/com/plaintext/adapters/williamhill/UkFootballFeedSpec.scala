@@ -7,7 +7,36 @@ import com.ning.http.client.RequestBuilder
 
 class UkFootballFeedSpec extends FlatSpec {
 
+	def betting = UkFootballFeed.request
+
 	"Requesting UkFootballFeed" should "return Betting" in {
-		UkFootballFeed.request.orElse{ fail() }
+		betting.orElse{ fail() }
+	}
+
+	"Requesting UkFootballFeed" should "return Betting containing BetTypes" in {
+		val names = 
+			for (
+				bets <- betting.toList;
+				betType <- bets.betTypes
+			) 
+			yield {
+				betType.name 
+			}
+
+		names.length should not be ('empty)
+	}
+
+	"Requesting UkFootballFeed" should "return Betting containing Markets" in {
+		val ids = 
+			for (
+				bets <- betting.toList; 
+				betType <- bets.betTypes; 
+				market <- betType.markets
+			)
+			yield {
+				market.id
+			}
+
+		ids.length should not be ('empty)
 	}
 }
