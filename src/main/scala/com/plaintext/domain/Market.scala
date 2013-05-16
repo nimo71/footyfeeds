@@ -9,7 +9,8 @@ class Market(
 	val betTillDate : String, 
 	val betTillTime : String, 
 	val lastUpdateDate : String, 
-	val lastUpdateTime : String )
+	val lastUpdateTime : String, 
+	val participants : Seq[Participant] )
 {
 	override def toString = 
 		"[Market: id=%s, name=%s, url=%s, date=%s, time=%s, betTillDate=%s, betTillTime=%s, lastUpdateDate=%s, lastUpdateTime=%s]".

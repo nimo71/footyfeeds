@@ -76,26 +76,26 @@ class BettingUnmarshallerSpec extends FlatSpec {
     	}
     }
 
-    // "apply" should "unmarshall xml in Markets containing Participants" in {
-    // 	val participants = 
-    // 		for (
-    // 			betting <- BettingUnmarshaller(testXml).toSeq;
-	   //      	betType <- betting.betTypes;
-	   //      	market <- betType.markets;
-	   //      	participant <- market.participants
-	   //      ) yield {
-				// participant
-	   //      } 
+    "apply" should "unmarshall xml in Markets containing Participants" in {
+    	val participants = 
+    		for (
+    			betting <- BettingUnmarshaller(testXml).toSeq;
+	        	betType <- betting.betTypes;
+	        	market <- betType.markets;
+	        	participant <- market.participants
+	        ) yield {
+				participant
+	        } 
 
-	   //  participants.foreach { participant => 
-	   //  	participant.name should not be(null)
-	   //  	participant.id should not be(null)
-	   //  	participant.odds should not be(null)
-	   //  	participant.oddsDecimal should not be(null)
-	   //  	participant.lastUpdateDate should not be(null)
-	   //  	participant.lastUpdateTime should not be(null)
-	   //  	participant.handicap should not be(null)
-	   //  }
-    // }
+	    participants.foreach { participant => 
+	    	participant.name should not be(null)
+	    	participant.id should not be(null)
+	    	participant.odds should not be(null)
+	    	participant.oddsDecimal should not be(null)
+	    	participant.lastUpdateDate should not be(null)
+	    	participant.lastUpdateTime should not be(null)
+	    	participant.handicap should not be(null)
+	    }
+    }
 
 }
