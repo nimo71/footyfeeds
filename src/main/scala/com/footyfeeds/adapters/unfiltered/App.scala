@@ -56,7 +56,7 @@ object Api {
 object Dynamic {
 	def intent = Intent {
 		case req @ GET(Path(Seg("footy" :: _))) => {
-			Ok ~> Html(Pages.index)
+			Ok ~> Html(IndexPage())
 		}
 	}
 }
