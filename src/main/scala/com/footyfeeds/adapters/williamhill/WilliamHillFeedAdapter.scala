@@ -25,8 +25,8 @@ object WilliamHillFeedAdapter {
 
 		bets.filter { bet => 
 			bet.marketName.endsWith("Match Betting") &&
-				bet.date == "2013-05-19" &&
-				bet.oddsDiff > 3
+				//bet.date == "2013-05-19" &&
+				bet.oddsDiff > 5
 		}.
 		sortBy(_.time)
 		// sortBy(_.oddsDiff)
