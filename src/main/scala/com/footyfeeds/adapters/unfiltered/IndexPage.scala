@@ -12,7 +12,7 @@ object IndexPage
 		val title = "Games"
 		htmlTemplate(title=title, heading=title, betTable())
 	}
-	
+
 	def betTable(): Node = {
 		val betss = WilliamHillFootballFeeds.requestAllFootballFeeds().map {
         				WilliamHillFeedAdapter.adapt(_)
@@ -21,24 +21,23 @@ object IndexPage
     	val bets = 
 	    	for (
 	    		bets <- betss;
-	    		bet <- bets)
+	    		bet <- bets )
 	    	yield {
 	 			bet
 	    	}
+
+	    val sortedBets = bets.sortBy(-_.oddsDiff).sortBy(_.date)
    
-   		<div>
-	   		<h2>Games Where Odds Difference is Greater Than 5</h2>
-			<table cellpadding="5">
-				<tr>
-					<th>Competition</th>
-					<th>Heading</th>
-					<th>Date</th>
-					<th>Time</th>
-					<th>Odds Diff</th>
-				</tr>
-				{ bets.map { betRow(_) } }
-			</table>
-		</div>
+   		<table cellpadding="5">
+			<tr>
+				<th>Competition</th>
+				<th>Heading</th>
+				<th>Date</th>
+				<th>Time</th>
+				<th>Odds Diff</th>
+			</tr>
+			{ sortedBets.map { betRow(_) } }
+		</table>
 	}
 
 	def betRow(bet: Bet): Node = {
@@ -50,7 +49,7 @@ object IndexPage
 			<td>{matchHeading}</td>
 			<td>{bet.date}</td>
 			<td>{bet.time}</td>
-			<td>{bet.oddsDiff}</td>
+			<td>{"%.3f".format(bet.oddsDiff)}</td>
 		</tr>
 	}
 
